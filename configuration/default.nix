@@ -11,6 +11,7 @@
     ./features/services/nextcloud.nix
     ./features/services/emby.nix
     # Features
+    ./features/cron.nix
     ./features/nix.nix
     ./features/prometheus.nix
   ];
