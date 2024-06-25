@@ -7,6 +7,7 @@
     ./features/prometheus.nix
     ./features/fish.nix
     ./features/cron.nix
+    ./features/avahi.nix
     # Sharing
     ./features/sharing/nfs.nix
     ./features/sharing/samba.nix
