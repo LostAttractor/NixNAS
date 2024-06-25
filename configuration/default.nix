@@ -13,6 +13,7 @@
     # Features
     ./features/cron.nix
     ./features/nix.nix
+    ./features/fish.nix
     ./features/prometheus.nix
   ];
 
