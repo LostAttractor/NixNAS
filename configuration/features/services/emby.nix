@@ -25,7 +25,10 @@
   '';
 
   services.nginx.virtualHosts."emby.home.lostattractor.net" = {
-    locations."/".proxyPass = "http://localhost:8096";
+    locations."/" = {
+      proxyPass = "http://localhost:8096";
+      proxyWebsockets = true;
+    };
     forceSSL = true;
     enableACME = true;
   };
