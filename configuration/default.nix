@@ -12,6 +12,7 @@
     ./features/services/emby.nix
     # Features
     ./features/cron.nix
+    ./features/avahi.nix
     ./features/nix.nix
     ./features/fish.nix
     ./features/prometheus.nix
