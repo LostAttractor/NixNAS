@@ -5,6 +5,7 @@
     ./features/nix.nix
     ./features/remote-builds.nix
     ./features/prometheus.nix
+    ./features/fish.nix
     ./features/cron.nix
     # Sharing
     ./features/sharing/nfs.nix
