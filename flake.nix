@@ -10,8 +10,8 @@
   outputs = { nixpkgs, deploy-rs, ... }: let
     user = "lostattractor";
   in rec {
-    # NixNAS@PVE.home.lostattractor.net
-    nixosConfigurations."nixnas@pve.home.lostattractor.net" = nixpkgs.lib.nixosSystem {
+    # NixNAS@PVE2.home.lostattractor.net
+    nixosConfigurations."nixnas@pve2.home.lostattractor.net" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit user; };
       modules = [
@@ -26,9 +26,9 @@
       sshUser = "root";
       magicRollback = false;
 
-      nodes."nixnas@pve.home.lostattractor.net" = {
+      nodes."nixnas@pve2.home.lostattractor.net" = {
         hostname = "nixnas.home.lostattractor.net";
-        profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos nixosConfigurations."nixnas@pve.home.lostattractor.net";
+        profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos nixosConfigurations."nixnas@pve2.home.lostattractor.net";
       };
     };
 
