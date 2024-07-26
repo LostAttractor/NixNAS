@@ -1,4 +1,9 @@
-{ pkgs, user, ... }:
+{
+  pkgs,
+  user,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -6,16 +11,16 @@
     ./features/sharing/nfs.nix
     ./features/sharing/samba.nix
     # Services
-    ./features/services/nginx.nix
     ./features/services/qbittorrent.nix
     ./features/services/nextcloud.nix
     ./features/services/emby.nix
     # Features
     ./features/cron.nix
-    ./features/avahi.nix
-    ./features/nix.nix
-    ./features/fish.nix
-    ./features/telemetry.nix
+    (inputs.homelab + "/features/nginx.nix")
+    (inputs.homelab + "/features/network/avahi")
+    (inputs.homelab + "/features/nix")
+    (inputs.homelab + "/features/fish.nix")
+    (inputs.homelab + "/features/telemetry/mdns.nix")
   ];
 
   users = {

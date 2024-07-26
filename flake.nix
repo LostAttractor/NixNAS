@@ -5,10 +5,12 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     deploy-rs.url = "github:serokell/deploy-rs";
     deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
+    homelab.url = "github:lostattractor/homelab";
+    homelab.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
-    { nixpkgs, deploy-rs, ... }:
+    { nixpkgs, deploy-rs, ... }@inputs:
     let
       user = "lostattractor";
     in
@@ -17,11 +19,11 @@
       nixosConfigurations."nixnas@pve2.home.lostattractor.net" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {
-          inherit user;
+          inherit inputs user;
         };
         modules = [
-          ./hardware/lxc
           ./configuration
+          (inputs.homelab + "/hardware/lxc")
           { networking.hostName = "NixNAS"; }
         ];
       };

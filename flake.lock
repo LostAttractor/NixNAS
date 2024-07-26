@@ -38,13 +38,28 @@
         "type": "github"
       }
     },
+    "homelab": {
+      "locked": {
+        "lastModified": 1722986929,
+        "narHash": "sha256-jzsmwxBXmtKmWv/Wx8+7OzsEyufNDwOXApx99T0aIl8=",
+        "owner": "lostattractor",
+        "repo": "homelab",
+        "rev": "dcbc1f1edf6f87ba8e39c767609d16739fc2e07e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lostattractor",
+        "repo": "homelab",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1721418448,
-        "narHash": "sha256-7krFI8qGfBPt3JtB7x5/LLZylcTVEGztyNO+Iqvtu2M=",
+        "lastModified": 1723211972,
+        "narHash": "sha256-4y7kS3ubimhAWmxq2faUSLjVZawQZTLUDmkL+ND4C2k=",
         "owner": "LostAttractor",
         "repo": "nixpkgs",
-        "rev": "b3396b5370707c9d9ee0dee7bda55567d216871f",
+        "rev": "e67c7495ba7922473ba219be1b4d04e249eae257",
         "type": "github"
       },
       "original": {
@@ -57,6 +72,7 @@
     "root": {
       "inputs": {
         "deploy-rs": "deploy-rs",
+        "homelab": "homelab",
         "nixpkgs": "nixpkgs"
       }
     },
