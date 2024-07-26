@@ -1,7 +1,10 @@
-_:
-{
+_: {
   # Enabling Flake
-  nix.settings.experimental-features = [ "nix-command" "flakes" "ca-derivations" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+    "ca-derivations"
+  ];
 
   # Substituters
   nix.settings.substituters = [ "https://mirrors.ustc.edu.cn/nix-channels/store" ];

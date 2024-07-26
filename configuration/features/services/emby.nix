@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   virtualisation.oci-containers.containers.emby = {
     image = "emby/embyserver";
@@ -17,12 +22,16 @@
     extraOptions = [ "--network=host" ]; # Enable DLNA and Wake-on-Lan
   };
 
-  system.activationScripts.emby = let
-    backend = config.virtualisation.oci-containers.backend;
-    backendBin = "${pkgs.${backend}}/bin/${backend}";
-  in ''
-    ${backendBin} volume create ${lib.optionalString (backend == "podman") "--ignore"} emby-config > /dev/null 2>&1
-  '';
+  system.activationScripts.emby =
+    let
+      backend = config.virtualisation.oci-containers.backend;
+      backendBin = "${pkgs.${backend}}/bin/${backend}";
+    in
+    ''
+      ${backendBin} volume create ${
+        lib.optionalString (backend == "podman") "--ignore"
+      } emby-config > /dev/null 2>&1
+    '';
 
   services.nginx.virtualHosts."emby.home.lostattractor.net" = {
     locations."/" = {

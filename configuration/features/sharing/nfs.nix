@@ -1,5 +1,4 @@
-_:
-{
+_: {
   services.nfs.server = {
     enable = true;
     exports = ''
