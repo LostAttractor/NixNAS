@@ -48,6 +48,9 @@
         nixosConfigurations = mapAttrs' (
           name: config: nameValuePair name config.config.system.build.toplevel
         ) nixosConfigurations;
+        tarball = mapAttrs' (
+          name: config: nameValuePair name config.config.system.build.tarball
+        ) nixosConfigurations;
       };
     };
 }
