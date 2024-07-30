@@ -7,18 +7,12 @@
 {
   virtualisation.oci-containers.containers.emby = {
     image = "emby/embyserver";
-    environment = {
-      UID = "1000"; # The UID to run emby as (default: 2)
-      GID = "100"; # The GID to run emby as (default 2)
-      GIDLIST = "100"; # A comma-separated list of additional GIDs to run emby as (default: 2)
-    };
     volumes = [
       "emby-config:/config"
-      "/mnt/Files/Bangumi:/mnt/Bangumi"
-      "/mnt/Files/Movies:/mnt/Movies"
-      "/mnt/Files/Music:/mnt/Music"
+      "/mnt/Bangumi:/mnt/Bangumi"
+      "/mnt/Movies:/mnt/Movies"
+      "/mnt/Music:/mnt/Music"
     ];
-    ports = [ "8096:8096" ];
     extraOptions = [ "--network=host" ]; # Enable DLNA and Wake-on-Lan
   };
 

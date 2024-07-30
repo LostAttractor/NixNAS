@@ -5,9 +5,9 @@
     openFirewall = true;
     package = pkgs.sambaFull;
 
-    shares = {
+    settings = {
       Files = {
-        path = "/mnt/Files";
+        path = "/mnt";
         public = false;
         writable = true;
       };

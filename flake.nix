@@ -5,8 +5,12 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     deploy-rs.url = "github:serokell/deploy-rs";
     deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     homelab.url = "github:lostattractor/homelab";
     homelab.inputs.nixpkgs.follows = "nixpkgs";
+    bcachefs-tools.url = "github:koverstreet/bcachefs-tools";
+    bcachefs-tools.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -15,16 +19,18 @@
       user = "lostattractor";
     in
     rec {
-      # NixNAS@PVE2.home.lostattractor.net
-      nixosConfigurations."nixnas@pve2.home.lostattractor.net" = nixpkgs.lib.nixosSystem {
+      # NAS@PVE2.home.lostattractor.net
+      nixosConfigurations."nas@pve2.home.lostattractor.net" = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
         specialArgs = {
           inherit inputs user;
         };
         modules = [
           ./configuration
-          (inputs.homelab + "/hardware/lxc")
-          { networking.hostName = "NixNAS"; }
+          inputs.sops-nix.nixosModules.sops
+          (inputs.homelab + "/hardware/kvm/proxmox.nix")
+          { networking.hostName = "NAS"; }
+          { nixpkgs.overlays = [ (final: prev: { inherit (inputs.bcachefs-tools.packages.${system}) bcachefs-tools; }) ]; }
         ];
       };
 
@@ -33,11 +39,11 @@
         sshUser = "root";
         magicRollback = false;
 
-        nodes."nixnas@pve2.home.lostattractor.net" = {
-          hostname = "nixnas.home.lostattractor.net";
+        nodes."nas@pve2.home.lostattractor.net" = {
+          hostname = "nas.home.lostattractor.net";
           profiles.system.path =
             deploy-rs.lib.x86_64-linux.activate.nixos
-              nixosConfigurations."nixnas@pve2.home.lostattractor.net";
+              nixosConfigurations."nas@pve2.home.lostattractor.net";
         };
       };
 
@@ -48,8 +54,8 @@
         nixosConfigurations = mapAttrs' (
           name: config: nameValuePair name config.config.system.build.toplevel
         ) nixosConfigurations;
-        tarball = mapAttrs' (
-          name: config: nameValuePair name config.config.system.build.tarball
+        image = mapAttrs' (
+          name: config: nameValuePair name config.config.system.build.image
         ) nixosConfigurations;
       };
     };

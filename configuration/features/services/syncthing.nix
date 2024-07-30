@@ -1,9 +1,6 @@
-{ user, config, ... }:
+{ config, ... }:
 {
-  services.syncthing = {
-    enable = true;
-    user = user;
-  };
+  services.syncthing.enable = true;
 
   services.nginx.virtualHosts."syncthing.home.lostattractor.net" = {
     locations."/" = {

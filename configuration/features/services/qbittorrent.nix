@@ -1,14 +1,15 @@
-{ user, config, ... }:
+{ config, ... }:
 {
   services.qbittorrent = {
     enable = true;
     webuiPort = 8081;
     torrentingPort = 9179;
-    user = user;
-    group = config.users.users.${user}.group;
     serverConfig = {
       Preferences.WebUI.Password_PBKDF2 = "@ByteArray(5P/EfnMxhqqYzTu5rF//rg==:+tG5V3rzKNOfO/lC5N0g8xeijsgFsqnLdI2sYnK/klhCModR0/1zMoVFv7jmuj3KlsAqV5z92m5rOOiIxYVfZQ==)";
-      BitTorrent.Session.DefaultSavePath = "/mnt/Files/Downloads";
+      BitTorrent.Session = {
+        DefaultSavePath = "/mnt/Downloads";
+        QueueingSystemEnabled = false;
+      };
       RSS = {
         AutoDownloader.EnableProcessing = true;
         Session.EnableProcessing = true;
