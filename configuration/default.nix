@@ -11,6 +11,7 @@
     ./features/sharing/nfs.nix
     ./features/sharing/samba.nix
     # Services
+    ./features/services/syncthing.nix
     ./features/services/qbittorrent.nix
     ./features/services/nextcloud.nix
     ./features/services/emby.nix
