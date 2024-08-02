@@ -22,6 +22,7 @@
     (inputs.homelab + "/features/nix")
     (inputs.homelab + "/features/fish.nix")
     (inputs.homelab + "/features/telemetry/mdns.nix")
+    (inputs.homelab + "/features/time.nix")
   ];
 
   users = {
