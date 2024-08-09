@@ -54,6 +54,10 @@
     };
   };
 
+  boot.kernel.sysctl = {
+    "vm.overcommit_memory" = true;
+  };
+
   # Basic Packages
   environment.systemPackages = with pkgs; [
     htop
