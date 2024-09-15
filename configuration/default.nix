@@ -17,6 +17,7 @@
     ./features/services/qbittorrent.nix
     ./features/services/nextcloud.nix
     ./features/services/emby.nix
+    ./features/services/immich.nix
     # Features
     ./features/snapper.nix
     ./features/cron.nix
