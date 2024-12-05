@@ -13,12 +13,13 @@
 
     # datadir = "/mnt/Files/Nextcloud";
 
-    hostName = "nextcloud.home.lostattractor.net";
+    hostName = "nextcloud.lostattractor.net";
     https = true;
   };
 
   services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
     forceSSL = true;
     enableACME = true;
+    serverAliases = [ "nextcloud.home.lostattractor.net" ];
   };
 }

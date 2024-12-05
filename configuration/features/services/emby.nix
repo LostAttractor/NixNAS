@@ -27,12 +27,13 @@
       } emby-config > /dev/null 2>&1
     '';
 
-  services.nginx.virtualHosts."emby.home.lostattractor.net" = {
+  services.nginx.virtualHosts."emby.lostattractor.net" = {
     locations."/" = {
       proxyPass = "http://localhost:8096";
       proxyWebsockets = true;
     };
     forceSSL = true;
     enableACME = true;
+    serverAliases = [ "emby.home.lostattractor.net" ];
   };
 }

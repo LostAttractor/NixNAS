@@ -2,7 +2,7 @@
 {
   services.syncthing.enable = true;
 
-  services.nginx.virtualHosts."syncthing.home.lostattractor.net" = {
+  services.nginx.virtualHosts."syncthing.lostattractor.net" = {
     locations."/" = {
       recommendedProxySettings = false;
       proxyPass = "http://${config.services.syncthing.guiAddress}";
@@ -14,6 +14,7 @@
     };
     forceSSL = true;
     enableACME = true;
+    serverAliases = [ "syncthing.home.lostattractor.net" ];
   };
 
   # 22000 TCP and/or UDP for sync traffic

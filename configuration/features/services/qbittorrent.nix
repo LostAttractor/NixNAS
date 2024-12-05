@@ -19,9 +19,10 @@
 
   networking.firewall.allowedTCPPorts = [ config.services.qbittorrent.torrentingPort ];
 
-  services.nginx.virtualHosts."qbittorrent.home.lostattractor.net" = {
+  services.nginx.virtualHosts."qbittorrent.lostattractor.net" = {
     locations."/".proxyPass = "http://localhost:${toString config.services.qbittorrent.webuiPort}";
     forceSSL = true;
     enableACME = true;
+    serverAliases = [ "qbittorrent.home.lostattractor.net" ];
   };
 }
